@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yousef Sayed</title>
+    <link rel="icon" type="image/x-icon" href="profile.jpeg">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #1453dc;
+            --gold: #ffb700;
+            --dark-red: #00748b;
+            --light-gold: #FFF8DC;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 220px;
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-title {
+            color: var(--light-gold);
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .link-item {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            padding: 18px 20px;
+            text-decoration: none;
+            color: var(--dark-red);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid transparent;
+            animation: fadeInUp 0.6s ease-out;
+            cursor: pointer;
+        }
+
+        .link-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-color: var(--gold);
+            color: var(--dark-red);
+            text-decoration: none;
+            background: var(--light-gold);
+        }
+
+        .link-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .link-icon i {
+            color: var(--gold);
+            font-size: 1.3rem;
+        }
+
+        .link-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .link-text {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape1 {
+            top: 10%;
+            left: 10%;
+            font-size: 2rem;
+            color: var(--gold);
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            top: 20%;
+            right: 15%;
+            font-size: 1.5rem;
+            color: var(--light-gold);
+            animation-delay: 2s;
+        }
+
+        .shape3 {
+            bottom: 20%;
+            left: 15%;
+            font-size: 2.5rem;
+            color: var(--gold);
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .link-item:nth-child(1) { animation-delay: 0.1s; }
+        .link-item:nth-child(2) { animation-delay: 0.2s; }
+        .link-item:nth-child(3) { animation-delay: 0.3s; }
+        .link-item:nth-child(4) { animation-delay: 0.4s; }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .profile-title {
+                font-size: 1.5rem;
+            }
+            
+            .link-item {
+                padding: 15px;
+            }
+            
+            .link-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .link-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape shape1">💼</div>
+        <div class="shape shape2">📈</div>
+        <div class="shape shape3">💰</div>
+    </div>
+
+    <div class="container">
+        <div class="profile-section">
+            <img src="profile.jpeg" 
+                 alt="Profile" class="profile-image" id="profileImage">
+            <h2 class="profile-title" id="profileTitle">Yousef Sayed</h2>
+            <p class="profile-title" style="font-size: 1.2rem;">Executive pharmacist at Nahdi Medical Co.</p>
+        </div>
+
+        <div id="linksContainer">
+            <!-- Links will be generated here -->
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Configuration object for easy customization
+        const config = {
+            profileTitle: "Yousef Sayed",
+            profileImage: "profile.jpeg",
+            
+            // Main links array - easily customizable
+            links: [
+                {
+                    name: "LinkedIn",
+                    icon: "LinkedIn.png",
+                    url: "https://www.linkedin.com/in/yousef-sayed-0a1670125/",
+                    type: "external"
+                },
+                {
+                    name: "Send Email Message",
+                    icon: "email.jpg",
+                    url: "Abdelatty.ys@hotmail.com",
+                    type: "email"
+                },
+                {
+                    name: "Call Me",
+                    icon: "call.jpg",
+                    url: "+966558322081",
+                    type: "phone"
+                }
+            ]
+        };
+
+        // Function to generate main links
+        function generateLinks() {
+            const container = document.getElementById('linksContainer');
+            container.innerHTML = '';
+            
+            config.links.forEach((link, index) => {
+                const linkElement = document.createElement('a');
+                
+                // Set the appropriate URL based on link type
+                if (link.type === 'email') {
+                    linkElement.href = `mailto:${link.url}`;
+                } else if (link.type === 'phone') {
+                    linkElement.href = `tel:${link.url}`;
+                } else {
+                    linkElement.href = link.url;
+                    linkElement.target = '_blank';
+                }
+                
+                linkElement.className = 'link-item';
+                linkElement.style.animationDelay = `${(index + 1) * 0.1}s`;
+                
+                linkElement.innerHTML = `
+                    <div class="link-icon">
+                        <img class="img-fluid" src="${link.icon}" alt="${link.name}">
+                    </div>
+                    <div class="link-text">${link.name}</div>
+                `;
+                
+                // Add click tracking (optional)
+                linkElement.addEventListener('click', function(e) {
+                    console.log(`Clicked: ${link.name}`);
+                });
+                
+                container.appendChild(linkElement);
+            });
+        }
+
+        // Function to update profile information
+        function updateProfile() {
+            document.getElementById('profileTitle').textContent = config.profileTitle;
+            document.getElementById('profileImage').src = config.profileImage;
+        }
+
+        // Add some interactive effects
+        function addInteractiveEffects() {
+            // Add ripple effect to links
+            document.querySelectorAll('.link-item').forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.02)';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add floating animation to shapes
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                setInterval(() => {
+                    const randomX = Math.random() * 20 - 10;
+                    const randomY = Math.random() * 20 - 10;
+                    shape.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                }, 3000 + index * 1000);
+            });
+        }
+
+        // Initialize the page
+        function init() {
+            updateProfile();
+            generateLinks();
+            addInteractiveEffects();
+        }
+
+        // Run initialization when page loads
+        document.addEventListener('DOMContentLoaded', init);
+
+        // Add keyboard shortcuts for accessibility
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.activeElement.blur();
+            }
+        });
+    </script>
+</body>
+</html>
