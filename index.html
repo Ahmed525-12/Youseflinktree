@@ -9,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
+            /* Original Colors */
             --primary-red: #1453dc;
             --gold: #ffb700;
             --dark-red: #00748b;
@@ -182,6 +183,7 @@
         .link-item:nth-child(2) { animation-delay: 0.2s; }
         .link-item:nth-child(3) { animation-delay: 0.3s; }
         .link-item:nth-child(4) { animation-delay: 0.4s; }
+        .link-item:nth-child(5) { animation-delay: 0.5s; }
 
         @media (max-width: 576px) {
             .container {
@@ -228,8 +230,7 @@
         </div>
 
         <div id="linksContainer">
-            <!-- Links will be generated here -->
-        </div>
+            </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -239,8 +240,24 @@
             profileTitle: "Yousef Sayed",
             profileImage: "profile.jpeg",
             
-            // Main links array - easily customizable
+            // Main links array
             links: [
+                // 1. NEW CONTACT OPTION ADDED HERE
+                {
+                    name: "Save Contact",
+                    // Make sure to add an image named contact.png to your folder
+                    icon: "contact.webp", 
+                    type: "vcard",
+                    // Data for the contact card
+                    data: {
+                        fn: "Dr. Youssef S. Abdelatty",
+                        org: "Nahdi Medical Co.",
+                        adr: ";;طريق الملك عبدالله الفرعي;;;;;",
+                        tel: "00966548322081",
+                        email: "Abdelatty.ys@hotmail.com",
+                        url: "https://shorturl.at/EsNaw"
+                    }
+                },
                 {
                     name: "LinkedIn",
                     icon: "LinkedIn.png",
@@ -276,11 +293,31 @@
             config.links.forEach((link, index) => {
                 const linkElement = document.createElement('a');
                 
-                // Set the appropriate URL based on link type
+                // Logic for different link types
                 if (link.type === 'email') {
                     linkElement.href = `mailto:${link.url}`;
                 } else if (link.type === 'phone') {
                     linkElement.href = `tel:${link.url}`;
+                } else if (link.type === 'vcard') {
+                    // Generate VCF File Content dynamically
+                    // Using UTF-8 charset to ensure Arabic displays correctly
+                    const vcardBody = [
+                        'BEGIN:VCARD',
+                        'VERSION:3.0',
+                        `FN;CHARSET=UTF-8:${link.data.fn}`,
+                        `ORG;CHARSET=UTF-8:${link.data.org}`,
+                        `ADR;TYPE=WORK;CHARSET=UTF-8:${link.data.adr}`,
+                        `TEL;TYPE=CELL:${link.data.tel}`,
+                        `EMAIL;TYPE=WORK:${link.data.email}`,
+                        `URL:${link.data.url}`,
+                        'END:VCARD'
+                    ].join('\n');
+
+                    // Create a blob for the file download
+                    const blob = new Blob([vcardBody], { type: 'text/vcard;charset=utf-8' });
+                    linkElement.href = window.URL.createObjectURL(blob);
+                    linkElement.download = 'Yousef_Contact.vcf'; // The name of the file downloaded
+                    
                 } else {
                     linkElement.href = link.url;
                     linkElement.target = '_blank';
@@ -291,7 +328,7 @@
                 
                 linkElement.innerHTML = `
                     <div class="link-icon">
-                        <img class="img-fluid" src="${link.icon}" alt="${link.name}">
+                        <img class="img-fluid" src="${link.icon}" alt="${link.name}" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\'fa-solid fa-user\'></i>'">
                     </div>
                     <div class="link-text">${link.name}</div>
                 `;
